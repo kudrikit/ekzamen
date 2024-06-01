@@ -1,0 +1,45 @@
+
+<div class="container" style="margin: 20px 10% 0 10%; width: 80%; justify-content: center;">
+  <div style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
+    <div style="display: flex; justify-content: left;">
+      <a routerLink="/user-list" class="btn btn-outline-primary" style="margin-right: 20px;">Users List</a>
+      <a routerLink="/file-upload"class="btn btn-outline-warning" style="margin-right: 20px;">File Upload</a>
+      <a routerLink="/city-search" class="btn btn-outline-primary" style="margin-right: 20px;">Map-Weather</a>
+    </div>
+
+    <br>
+    <br>
+
+    <div style="display: flex; justify-content: right;">
+      <div *ngIf="(!isUserAuth())">
+        <a routerLink="/auth-user" class="btn btn-outline-success" style="margin-right: 20px;"> Auth </a>
+        <a routerLink="/add-user" class="btn btn-outline-primary"> Registrate </a>
+      </div>
+      <div *ngIf="(isUserAuth())">
+        <button *ngIf="(isUserAuth())" (click)="logout()" class="btn btn-outline-danger" style="margin-right: 20px;"> Log Out </button>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <h2>News</h2>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="keyword">Search by keywords:</label>
+        <input type="text" class="form-control" id="keyword" formControlName="keyword" placeholder="Search">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" [disabled]="!searchForm.valid">Search</button>
+    </form>
+    <br>
+
+    <div class="info" style="display: flex; border: #777 solid 1.5px; border-radius: 10px; padding: 20px 20px 0 20px; margin-bottom: 20px;" *ngFor="let article of articles; trackBy: trackByFn">
+      <div style="display: block;">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <p>Author: {{ article.author }}</p>
+        <p>Published At: {{ article.publishedAt }}</p>
+      </div>
+    </div>
+  </div>

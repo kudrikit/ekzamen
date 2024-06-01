@@ -1,0 +1,55 @@
+<div class="container" style="margin: 20px 10% 0 10%; width: 80%; justify-content: center;">
+
+  <div style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
+    <div style="display: flex; justify-content: left;">
+      <a routerLink="/file-upload"class="btn btn-outline-warning" style="margin-right: 20px;">File Upload</a>
+      <a routerLink="/news" class="btn btn-outline-primary" style="margin-right: 20px;">News</a>
+      <a routerLink="/city-search" class="btn btn-outline-primary" style="margin-right: 20px;">Map-Weather</a>
+    </div>
+
+    <br>
+    <br>
+
+    <div style="display: flex; justify-content: right;">
+      <div *ngIf="(!isUserAuth())">
+        <a routerLink="/auth-user" class="btn btn-outline-success" style="margin-right: 20px;"> Auth </a>
+        <a routerLink="/add-user" class="btn btn-outline-primary"> Registrate </a>
+      </div>
+      <div *ngIf="(isUserAuth())">
+        <button *ngIf="(isUserAuth())" (click)="logout()" class="btn btn-outline-danger"> Log Out </button>
+      </div>
+    </div>
+
+  </div>
+  <br>
+
+  <h2>Users list</h2>
+  <br>
+
+  <div class="content-item" *ngFor="let user of users" style="border: #777 solid 1.5px; border-radius: 10px; padding: 20px; padding-right: 0; margin-bottom: 20px;">
+
+    <a routerLink="/user/{{user._id}}"><strong>Name:</strong> {{ user.name }}</a>
+
+    <p>Age:{{ user.age }}</p>
+    <!-- <p>Email:{{ user.email }}</p> -->
+
+    <div *ngIf="(getCurrentUserId() == user._id)">
+      <a routerLink="/edit-user/{{user._id}}" class="btn btn-primary" style="margin-right: 20px;"> Edit </a>
+      <button type="button" (click)="onDelete(user._id)" class="btn btn-danger">Delete</button>
+    </div>
+
+</div>
+<br>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  // Пример отправки сообщения на сервер
+  socket.emit('chat message', 'Hello, server!');
+
+  // Обработка полученных сообщений от сервера
+  socket.on('chat message', msg => {
+    console.log('Message from server:', msg);
+  });
+</script>

@@ -1,0 +1,74 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.search-container input {
+  height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container button {
+  height: 40px;
+  font-size: 18px;
+  padding: 0 20px;
+  background-color: white; /* Белый цвет кнопки */
+  color: black; /* Черный цвет текста */
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+  background-color: blue; /* Синий цвет кнопки при наведении */
+  color: white; /* Белый цвет текста при наведении */
+}
+
+.weather-data {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.weather-data h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.weather-data p {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.data-store {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Добавляем стили для таблицы */
+/* Стили для таблицы */
+.weather-table {
+  width: 50%; /* Ширина таблицы */
+  border-collapse: collapse; /* Объединение границ */
+  margin: 0 auto; /* Центрирование таблицы */
+  border: 2px solid black; /* Черная граница для всей таблицы */
+}
+
+/* Стили для ячеек таблицы */
+.dataStore th, .dataStore td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid black; /* Черная граница для ячеек */
+}

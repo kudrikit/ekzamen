@@ -1,0 +1,38 @@
+<div class="container" style="margin: 20px 10% 0 10%; width: 80%; justify-content: center;">
+<div style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
+  <div style="display: flex; justify-content: left;">
+    <a routerLink="/user-list" class="btn btn-outline-primary" style="margin-right: 20px;">Users List</a>
+    <a routerLink="/news" class="btn btn-outline-secondary" style="margin-right: 20px;">News</a>
+    <a routerLink="/file-upload" class="btn btn-outline-warning" style="margin-right: 20px;">File Upload</a>
+  </div>
+  <div style="display: flex; justify-content: right;">
+    <div *ngIf="!isUserAuth()">
+      <a routerLink="/auth-user" class="btn btn-outline-success" style="margin-right: 20px;">Auth</a>
+      <a routerLink="/add-user" class="btn btn-outline-primary">Registrate</a>
+    </div>
+    <div *ngIf="isUserAuth()">
+      <button (click)="logout()" class="btn btn-outline-danger">Log Out</button>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="search-container">
+  <input type="text" [(ngModel)]="city" placeholder="Enter city name">
+  <button class="search-button" (click)="searchWeather()">Search</button>
+</div>
+
+<div *ngIf="weatherData" class="data-store">
+  <h2>{{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
+  <table class="weather-table">
+    <tr>
+      <td class="dataStore td">Temperature:</td>
+      <td class="dataStore td">{{ weatherData.main.temp }}°C</td>
+    </tr>
+    <tr>
+      <td class="dataStore td">Humidity:</td>
+      <td class="dataStore td">{{ weatherData.main.humidity }}%</td>
+    </tr>
+  </table>
+</div>
+</div>

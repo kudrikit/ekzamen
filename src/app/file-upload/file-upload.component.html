@@ -1,0 +1,50 @@
+<div class="container" style="margin: 20px 10% 0 10%; width: 80%; justify-content: center;">
+  <div style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
+    <div style="display: flex; justify-content: left;">
+      <a routerLink="/user-list" class="btn btn-outline-primary" style="margin-right: 20px;">Users List</a>
+      <a routerLink="/news" class="btn btn-outline-secondary" style="margin-right: 20px;">News</a>
+      <a routerLink="/city-search" class="btn btn-outline-primary" style="margin-right: 20px;">Map-Weather</a>
+    </div>
+    <div style="display: flex; justify-content: right;">
+      <div *ngIf="!isUserAuth()">
+        <a routerLink="/auth-user" class="btn btn-outline-success" style="margin-right: 20px;">Auth</a>
+        <a routerLink="/add-user" class="btn btn-outline-primary">Registrate</a>
+      </div>
+      <div *ngIf="isUserAuth()">
+        <button (click)="logout()" class="btn btn-outline-danger">Log Out</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <h2>File Upload</h2>
+  <br>
+  <form [formGroup]="uploadFileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <input type="file" (change)="onFileSelected($event)" #fileInput>
+    <button type="submit" class="btn btn-outline-secondary">Upload</button>
+  </form>
+  <div *ngIf="message">{{ message }}</div>
+  <br>
+  <br>
+  <h2>Uploaded Files</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Preview</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let file of files">
+      <td>{{ file.Key }}</td>
+      <td>
+        <img *ngIf="isImage(file.Key)" [src]="getFileUrl(file.Key)" alt="{{ file.Key }}" style="max-width: 100px; max-height: 100px;">
+        <!-- Add other file type previews here if needed -->
+      </td>
+      <td>
+        <button (click)="deleteFile(file.Key)" class="btn btn-outline-danger">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

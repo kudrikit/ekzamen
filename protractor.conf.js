@@ -28,5 +28,3 @@ exports.config = {
 //npx mocha test/weather.test.mjs
 };
 
-
-
